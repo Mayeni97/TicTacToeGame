@@ -1,13 +1,14 @@
 package TicTacToe;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
-    Static ArrayList<Integer>playerPositions= new ArrayList<Integer>();
-    Static ArrayList<Integer>cpuPositions= new ArrayList<Integer>();
+    static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+    static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
 
     public static void main(String[] args) {
 
@@ -24,6 +25,7 @@ public class TicTacToe {
             while(playerPositions.contains(playerPos) || cpuPositions.contains(playerPos)) {
             System.out.println("Postion Taken, Try Anothe Number");
             playerPos = scan.nextInt();
+            
         }
 
             placePiece(gameBoard, playerPos, "Player 1");
@@ -36,9 +38,8 @@ public class TicTacToe {
             placePiece(gameBoard, cpuPos, "CPU");
 
             printGameBoard(gameBoard);
-
-            String result = checkWinner();
         }
+    }
 
     }
 
@@ -96,16 +97,16 @@ public class TicTacToe {
 
     }
 
-    public static String checkWinner(){
-        List topRow = Arrays.asList(1,2,3);
-        List middleRow = Arrays.asList(4,5,6);  
-        List bottomRow = Arrays.asList(7,8,9);
-        List leftColumn = Arrays.asList(1,4,7);
-        List middleColumn = Arrays.asList(2,5,8);
-        List rightColumn = Arrays.asList(3,6,9);
-        List diagonal1 = Arrays.asList(1,5,9);
-        List diagonal2 = Arrays.asList(3,5,7);
-        
+    public static String checkWinner() {
+        List topRow = Arrays.asList(1, 2, 3);
+        List middleRow = Arrays.asList(4, 5, 6);
+        List bottomRow = Arrays.asList(7, 8, 9);
+        List leftColumn = Arrays.asList(1, 4, 7);
+        List middleColumn = Arrays.asList(2, 5, 8);
+        List rightColumn = Arrays.asList(3, 6, 9);
+        List diagonal1 = Arrays.asList(1, 5, 9);
+        List diagonal2 = Arrays.asList(3, 5, 7);
+
         List<List> winning = new ArrayList<List>();
         winning.add(topRow);
         winning.add(middleRow);
@@ -116,17 +117,16 @@ public class TicTacToe {
         winning.add(diagonal1);
         winning.add(diagonal2);
 
-        for (list l : winning) {
-            if(playerPositions.containAll(l)){
+        for (List l : winning) {
+            if (playerPositions.contains(l)) {
                 return "Player 1 Wins";
-            } else if (cpuPositions.containAll(l)){
+            } else if (cpuPositions.contains(l)) {
                 return "CPU Wins";
-            }else if(playerPositions.size() + cpuPositions.size() == 9){
+            } else if (playerPositions.size() + cpuPositions.size() == 9) {
                 return "Draw";
             }
         }
-    }    
-        
-        
-        
+        return null;
+    }
+
 }
